@@ -4,8 +4,7 @@ workflows:
   my-workflow:
     jobs:
       - run-tests:
-          context:
-            - protected-branches
+          context: protected-branches
 jobs:
   run-tests:
     docker:
