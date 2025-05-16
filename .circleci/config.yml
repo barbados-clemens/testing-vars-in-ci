@@ -1,15 +1,35 @@
 version: 2.1
 
-workflows:
-  my-workflow:
-    jobs:
-      - run-tests:
-          context:
-            - protected-branches
+executors:
+  default:
+    docker:
+      - image: cimg/base:stable
+
 jobs:
-  run-tests:
+  run-tests-protected:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
       - run: echo "$TEST_VAR"
+
+  run-tests-prs:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: echo "$TEST_VAR"
+
+workflows:
+  my-workflow:
+    jobs:
+      - run-tests-protected:
+          context:
+            - protected-branches
+          filters:
+            branches:
+              only: main
+      - run-tests-prs:
+          filters:
+            branches:
+              ignore: main
