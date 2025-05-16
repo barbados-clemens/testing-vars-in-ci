@@ -1,0 +1,17 @@
+version: 2.1
+
+workflows:
+  my-workflow:
+    jobs:
+      - run-tests:
+          context:
+            - protected-branches
+jobs:
+  run-tests:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+        name: "echo vars"
+        command: echo "$TEST_VAR"
