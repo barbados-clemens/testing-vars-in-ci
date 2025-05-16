@@ -11,14 +11,14 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "$TEST_VAR"
+      - run: echo "${#TEST_VAR}"
 
   run-tests-prs:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: echo "$TEST_VAR"
+      - run: echo "${#TEST_VAR}"
 
 workflows:
   my-workflow:
