@@ -12,6 +12,4 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-        name: "echo vars"
-        command: echo "$TEST_VAR"
+      - run: echo "$TEST_VAR"
